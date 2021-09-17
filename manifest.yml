@@ -23,7 +23,7 @@ spec:
         imagePullPolicy: Always
         resources: {}
         ports:
-          - containerPort: 80 
+          - containerPort: 3080 
 status: {}
 
 ---
@@ -36,7 +36,7 @@ metadata:
     run: angular-webapp
 spec:
   ports:
-  - port: 80
+  - port: 3080
     protocol: TCP
   selector:
     app: angular-webapp
