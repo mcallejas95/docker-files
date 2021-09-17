@@ -18,7 +18,7 @@ spec:
         app: angular-webapp
     spec:
       containers:
-      - image: docker.io/bbachin1/angular-node-webapp
+      - image: mcallejas95/spa-demo
         name: webapp
         imagePullPolicy: Always
         resources: {}
