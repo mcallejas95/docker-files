@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Ingress
+metadata:
+   name: ingress-webapp
+   annotations:
+     nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+   rules:
+   - host: webapp
+     http:
+       paths:
+       - path: /sas
+         backend:
+           serviceName: angular-webapp
+           servicePort: 31000
