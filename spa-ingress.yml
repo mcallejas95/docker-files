@@ -1,15 +1,17 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-   name: ingress-webapp
-   annotations:
-     nginx.ingress.kubernetes.io/rewrite-target: /
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-   rules:
-   - host: webapp
-     http:
-       paths:
-       - path: /sas
-         backend:
-           serviceName: angular-webapp
-           servicePort: 31000
+  rules:
+  - http:
+      paths:
+      - path: /sas
+        pathType: Prefix
+        backend:
+          service:
+            name: angular-webapp
+            port:
+              number: 31000
