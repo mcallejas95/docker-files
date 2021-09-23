@@ -7,7 +7,7 @@ metadata:
 spec:
   rules:
   - host: inaction-sas
-  - http:
+    http:
       paths:
       - path: /sas
         pathType: Prefix
