@@ -65,7 +65,6 @@ RUN mkdir -p android-sdk/cmdline-tools/tools/
 RUN cp -a cmdline-tools/. android-sdk/cmdline-tools/tools/
 RUN export ANDROID_SDK_ROOT=/android-sdk
 RUN yes | /android-sdk/cmdline-tools/tools/bin/./sdkmanager --licenses
-RUN echo $ANDROID_SDK_ROOT
 #RUN chmod 777 -R $ANDROID_SDK_ROOT
 
 #Login GIT
