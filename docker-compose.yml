@@ -22,8 +22,3 @@ services:
       - /var/lib/docker/volumes/sonarqube-data/_data:/opt/sonarqube/data
       - /var/lib/docker/volumes/sonarqube-logs/_data:/opt/sonarqube/logs
       - /var/lib/docker/volumes/sonarqube-extensions/_data:/opt/sonarqube/extensions
-
-networks: 
-  default: 
-    external: 
-      name: inaction-network
