@@ -1,0 +1,24 @@
+version: "3.9"
+services:
+
+  jenkins:
+    build: .
+    ports:
+      - "8090:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/jenkins_home:/var/jenkins_home
+        
+
+  sonarqube:
+    image: sonarqube:latest
+    depends_on:
+      - jenkins
+    ports:
+      - "9000:9000"
+      - "9092:9092"
+    volumes:
+      - /var/lib/docker/volumes/sonarqube-conf/_data:/opt/sonarqube/conf
+      - /var/lib/docker/volumes/sonarqube-data/_data:/opt/sonarqube/data
+      - /var/lib/docker/volumes/sonarqube-logs/_data:/opt/sonarqube/logs
+      - /var/lib/docker/volumes/sonarqube-extensions/_data:/opt/sonarqube/extensions

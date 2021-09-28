@@ -26,7 +26,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-co
     && chmod +x /usr/local/bin/docker-compose
 
 # agregar al grupo de docker
-RUN usermod -aG docker $USER
+#RUN usermod -aG docker $USER
 #USER jenkins
 
 ###Requisitos para pipelines
@@ -35,7 +35,8 @@ RUN usermod -aG docker $USER
 RUN apt-get update \
     && apt-get -y install \
        default-jdk \
-       firefox-esr
+       firefox-esr \
+       git
 
 # NETCORE 5.0
 RUN wget https://packages.microsoft.com/config/ubuntu/21.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
@@ -66,3 +67,7 @@ RUN export ANDROID_SDK_ROOT=/android-sdk
 RUN yes | /android-sdk/cmdline-tools/tools/bin/./sdkmanager --licenses
 RUN echo $ANDROID_SDK_ROOT
 #RUN chmod 777 -R $ANDROID_SDK_ROOT
+
+#Login GIT
+RUN git config --global user.name "InActionSaaS"
+RUN git config --global user.email "jm.islas@dataware.com.mx"
