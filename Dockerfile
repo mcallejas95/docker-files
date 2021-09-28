@@ -72,4 +72,5 @@ RUN git config --global user.name "InActionSaaS"
 RUN git config --global user.email "jm.islas@dataware.com.mx"
 
 #dotnet sonarscanner
+RUN export PATH="$PATH:/root/.dotnet/tools"
 RUN dotnet tool install --global dotnet-sonarscanner
