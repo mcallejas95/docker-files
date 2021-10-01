@@ -3,9 +3,11 @@ services:
 
   app-registry:
     image: registry:2
-    port:
+    ports:
       - "5000:5000"
     container_name: registry-cdd
+    networks:
+      - inaction-network
     
   jenkins:    
     build: .
@@ -39,3 +41,4 @@ services:
 
 networks:
   inaction-network:
+    name: inaction-network
