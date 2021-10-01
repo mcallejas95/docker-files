@@ -1,10 +1,21 @@
 version: "3.9"
 services:
 
-  jenkins:
+  app-registry:
+    image: registry:2
+    port:
+      - "5000:5000"
+    container_name: registry-cdd
+    
+  jenkins:    
     build: .
+    depends_on:
+      - app-registry
     ports:
       - "8080:8080"
+    networks:
+      - inaction-network
+    container_name: jenkins-cdd
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/jenkins_home:/var/jenkins_home
@@ -17,8 +28,14 @@ services:
     ports:
       - "9000:9000"
       #- "9092:9092"
+    networks:
+      - inaction-network
+    container_name: sonarqube-cdd
     volumes:
       - /var/lib/docker/volumes/sonarqube-conf/_data:/opt/sonarqube/conf
       - /var/lib/docker/volumes/sonarqube-data/_data:/opt/sonarqube/data
       - /var/lib/docker/volumes/sonarqube-logs/_data:/opt/sonarqube/logs
       - /var/lib/docker/volumes/sonarqube-extensions/_data:/opt/sonarqube/extensions
+
+networks:
+  inaction-network:
