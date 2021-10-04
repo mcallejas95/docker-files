@@ -4,7 +4,7 @@ USER root
 
 # requisitos docker
 RUN apt-get update \
-    && apt-get -y install \
+    && apt-get -y install sudo \
         apt-transport-https \
         ca-certificates \
         curl \
