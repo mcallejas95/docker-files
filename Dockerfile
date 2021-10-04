@@ -12,17 +12,22 @@ RUN apt-get update \
         wget
 
 # docker repos
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-    && echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" >> /etc/apt/sources.list.d/additional-repositories.list \
-    && echo "deb http://ftp-stud.hs-esslingen.de/ubuntu xenial main restricted universe multiverse" >> /etc/apt/sources.list.d/official-package-repositories.list \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 437D05B5 \
-    && apt-get update
+#RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+#    && echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" >> /etc/apt/sources.list.d/additional-repositories.list \
+#    && echo "deb http://ftp-stud.hs-esslingen.de/ubuntu xenial main restricted universe multiverse" >> /etc/apt/sources.list.d/official-package-repositories.list \
+#    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 437D05B5 \
+#    && apt-get update
+
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" \
+    apt-get update \
+    apt-cache policy docker-ce
 
 # docker
 RUN apt-get -y install docker-ce
 
 # docker-compose
-RUN curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
+RUN curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
 # agregar al grupo de docker
