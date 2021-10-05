@@ -71,9 +71,9 @@ RUN service ssh start
 
 #ANDROID SDK
 RUN wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
-RUN unzip commandlinetools-linux-7583922_latest.zip \
-    rm commandlinetools-linux-7583922_latest.zip \
-    mkdir -p android-sdk/cmdline-tools/tools/ 
+RUN unzip commandlinetools-linux-7583922_latest.zip
+RUN rm commandlinetools-linux-7583922_latest.zip
+RUN mkdir -p android-sdk/cmdline-tools/tools/ 
 RUN cp -a cmdline-tools/. android-sdk/cmdline-tools/tools/ \
     export ANDROID_SDK_ROOT=/android-sdk 
 RUN yes | /android-sdk/cmdline-tools/tools/bin/./sdkmanager --licenses
