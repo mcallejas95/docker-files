@@ -39,7 +39,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.29.2/docker-co
 #JAVA / FIREFOX
 RUN apt-get update \
     && apt-get -y install \
-       default-jdk \
+       openjdk-8-jdk \
        firefox-esr \
        git
 
@@ -52,9 +52,16 @@ RUN apt-get install -y apt-transport-https && \
     apt-get install -y dotnet-sdk-5.0
 
 # NODE
-RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
-RUN bash nodesource_setup.sh
-RUN apt install nodejs
+#RUN curl -sL https://deb.nodesource.com/setup_12.x -o nodesource_setup.sh
+#RUN bash nodesource_setup.sh
+#RUN apt install nodejs
+
+RUN apt-get update -y \
+    && apt-get -y install curl gnupg ca-certificates \
+    && curl -L https://deb.nodesource.com/setup_12.x | bash \
+    && apt-get update -y \
+    && apt-get install -y \
+        nodejs
 
 #SSH 
 RUN apt update && apt install -y \
@@ -64,17 +71,16 @@ RUN service ssh start
 
 #ANDROID SDK
 RUN wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip
-RUN unzip commandlinetools-linux-7583922_latest.zip
-RUN rm commandlinetools-linux-7583922_latest.zip
-RUN mkdir -p android-sdk/cmdline-tools/tools/
-RUN cp -a cmdline-tools/. android-sdk/cmdline-tools/tools/
-RUN export ANDROID_SDK_ROOT=/android-sdk
+RUN unzip commandlinetools-linux-7583922_latest.zip \
+    rm commandlinetools-linux-7583922_latest.zip \
+    mkdir -p android-sdk/cmdline-tools/tools/ 
+RUN cp -a cmdline-tools/. android-sdk/cmdline-tools/tools/ \
+    export ANDROID_SDK_ROOT=/android-sdk 
 RUN yes | /android-sdk/cmdline-tools/tools/bin/./sdkmanager --licenses
-#RUN chmod 777 -R $ANDROID_SDK_ROOT
 
 #Login GIT
-RUN git config --global user.name "InActionSaaS"
-RUN git config --global user.email "jm.islas@dataware.com.mx"
+RUN git config --global user.name "InActionSaaS" \
+    git config --global user.email "jm.islas@dataware.com.mx"
 
 #dotnet sonarscanner
 RUN dotnet tool install --global dotnet-sonarscanner
