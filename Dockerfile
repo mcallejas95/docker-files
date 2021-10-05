@@ -80,7 +80,7 @@ RUN yes | /android-sdk/cmdline-tools/tools/bin/./sdkmanager --licenses
 
 #Login GIT
 RUN git config --global user.name "InActionSaaS" \
-    git config --global user.email "jm.islas@dataware.com.mx"
+    && git config --global user.email "jm.islas@dataware.com.mx"
 
 #dotnet sonarscanner
 RUN dotnet tool install --global dotnet-sonarscanner
