@@ -74,8 +74,8 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-7583922
 RUN unzip commandlinetools-linux-7583922_latest.zip
 RUN rm commandlinetools-linux-7583922_latest.zip
 RUN mkdir -p android-sdk/cmdline-tools/tools/ 
-RUN cp -a cmdline-tools/. android-sdk/cmdline-tools/tools/ \
-    export ANDROID_SDK_ROOT=/android-sdk 
+RUN cp -a cmdline-tools/. android-sdk/cmdline-tools/tools/
+RUN export ANDROID_SDK_ROOT=/android-sdk 
 RUN yes | /android-sdk/cmdline-tools/tools/bin/./sdkmanager --licenses
 
 #Login GIT
